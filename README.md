@@ -31,17 +31,17 @@ from django.views.decorators.csrf import csrf_exempt
 ![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/layout_design.png)
 
 ## Final preview
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/homepage.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/homepage.jpg)
 
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/2.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/2.jpg)
 
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/3.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/3.jpg)
 
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/4.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/4.jpg)
 
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/5.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/5.jpg)
 
-![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/6.png)
+![](https://github.com/ritikdeswal/27-shifterz--Django/blob/main/screenshots/6.jpg)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
