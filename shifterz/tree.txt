@@ -1,0 +1,149 @@
+Folder PATH listing for volume Media
+Volume serial number is 867D-F72E
+F:.
+³   db.sqlite3
+³   manage.py
+³   tree.txt
+³   
+ÃÄÄÄapp
+³   ³   admin.py
+³   ³   apps.py
+³   ³   models.py
+³   ³   tests.py
+³   ³   urls.py
+³   ³   views.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄmigrations
+³   ³   ³   0001_initial.py
+³   ³   ³   0002_wishlist.py
+³   ³   ³   0003_alter_product_category.py
+³   ³   ³   0004_alter_product_category.py
+³   ³   ³   0005_alter_orderplaced_customer.py
+³   ³   ³   0006_alter_orderplaced_customer.py
+³   ³   ³   0007_alter_orderplaced_customer.py
+³   ³   ³   0008_alter_orderplaced_customer.py
+³   ³   ³   0009_alter_orderplaced_customer.py
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÀÄÄÄ__pycache__
+³   ³           0001_initial.cpython-39.pyc
+³   ³           0002_wishlist.cpython-39.pyc
+³   ³           0003_alter_product_category.cpython-39.pyc
+³   ³           0004_alter_product_category.cpython-39.pyc
+³   ³           0005_alter_orderplaced_customer.cpython-39.pyc
+³   ³           0006_alter_orderplaced_customer.cpython-39.pyc
+³   ³           0007_alter_orderplaced_customer.cpython-39.pyc
+³   ³           0008_alter_orderplaced_customer.cpython-39.pyc
+³   ³           0009_alter_orderplaced_customer.cpython-39.pyc
+³   ³           __init__.cpython-39.pyc
+³   ³           
+³   ÃÄÄÄstatic
+³   ³   ÀÄÄÄapp
+³   ³       ÃÄÄÄbanner
+³   ³       ³       b1.jpg
+³   ³       ³       b2.jpg
+³   ³       ³       b3.jpg
+³   ³       ³       b4.jpg
+³   ³       ³       halloween.jpg
+³   ³       ³       
+³   ³       ÃÄÄÄbrand-img
+³   ³       ³       black.png
+³   ³       ³       white.png
+³   ³       ³       
+³   ³       ÃÄÄÄcss
+³   ³       ³       styles.min.css
+³   ³       ³       
+³   ³       ÃÄÄÄfavicon
+³   ³       ³       fav.png
+³   ³       ³       
+³   ³       ÀÄÄÄfont
+³   ÃÄÄÄtemplates
+³   ³   ÀÄÄÄapp
+³   ³           base.html
+³   ³           cart.html
+³   ³           index.html
+³   ³           privacy.html
+³   ³           product.html
+³   ³           return-policy.html
+³   ³           shipping-policy.html
+³   ³           terms.html
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           admin.cpython-39.pyc
+³           apps.cpython-39.pyc
+³           models.cpython-39.pyc
+³           urls.cpython-39.pyc
+³           views.cpython-39.pyc
+³           __init__.cpython-39.pyc
+³           
+ÃÄÄÄmedia
+³   ÀÄÄÄproductimg
+³           10.jpg
+³           10_76AousS.jpg
+³           10_SnmCsx6.jpg
+³           11.jpg
+³           11_ni3puHn.jpg
+³           12.jpg
+³           12_KDS2DnO.jpg
+³           12_M0PUnMb.jpg
+³           12_URBjxnt.jpg
+³           1_pcpMGdLxztYmmnVKOK6P0A.jpeg
+³           2.jpg
+³           2015-TAIL-LIGHT.jpg
+³           2X-Car-Racing-Seats-Leather-Reclinable-Bucket-Seat.jpg
+³           3.jpg
+³           4.jpg
+³           4k-need-for-speed-payback-underglow-wallpaper-preview.jpg
+³           5.jpg
+³           6.jpg
+³           6_cj8JC2Z.jpg
+³           7.jpg
+³           7_9Cz54hC.jpg
+³           8.jpg
+³           8_9u5y3wq.jpg
+³           8_mW1vxx5.jpg
+³           9.jpg
+³           9_4CXwniI.jpg
+³           aWEArcTxFmZsbCxMpBJtZKQb7ehrgfm0.jpg
+³           B65E0-1EK00.jpg
+³           brake-rotor-slotted-drilled.jpg
+³           Car-Spoiler-China-Wholesale-Universal-Big-Spoiler-Rear-Wing-for-All-Cars.jpg
+³           download.jpg
+³           HD-wallpaper-mazda-rx7-illegal-on-street-nfs-need-for-speed-mazda-rx7-mazda-cars.jpg
+³           HD-wallpaper-nissan-180sx-180-cars-heat-jdm-need-for-speed-need-for-speed-hea_69LwzWx.jpg
+³           need-for-speed-payback-2-740x416.jpg
+³           nrg-racing-seats.jpg
+³           pexels-photo-5229611_1.jpeg
+³           photo-1569780016951-ce994327d5c3.jpg
+³           photo-1569780016951-ce99432hhhhh7d5c3.jpg
+³           photo-1584920735791-be9a8eba8baa.jpg
+³           photo-1615523331307-42dbeb7b7301.jpg
+³           photo-1632155339219-f6ae85400b00.jpg
+³           Purple_911.jpg
+³           Racing-Seat-e1602642541994.jpg
+³           Screenshot_115-small.png
+³           Screenshot_155-small.png
+³           Screenshot_367-small.png
+³           Screenshot_436-small.png
+³           Screenshot_94-small_2.png
+³           veer-design-supratfweb_2.jpg
+³           
+ÃÄÄÄshifterz
+³   ³   asgi.py
+³   ³   settings.py
+³   ³   urls.py
+³   ³   wsgi.py
+³   ³   __init__.py
+³   ³   
+³   ÀÄÄÄ__pycache__
+³           settings.cpython-39.pyc
+³           urls.cpython-39.pyc
+³           wsgi.cpython-39.pyc
+³           __init__.cpython-39.pyc
+³           
+ÀÄÄÄtemplates
+    ÀÄÄÄallauth
+        ÀÄÄÄaccount
+                logout.html
+                

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+
+{% block body %}
+
+<div style="width: 90%;margin: auto;height:70vh;" class='m-top'>  
+    <div class="checkout-col-1">
+        <div style="font-size: 1.2em;margin: 10px 0;">Select Address</div>
+        <div>
+            {%for d in address %}
+            <div class='address-block-2' id='{{d.id}}' onclick="selected(this)">
+                <h3 style='margin-bottom: 4px;'>Address {{ forloop.counter }}</h3>
+                <div style='display:inline-block'>
+                    <div>{{d.name}}</div>
+                    <div>{{d.locality}} , {{d.city}}, {{d.state}} , {{d.zipcode}}</div>
+                </div> 
+            </div>
+            {%endfor %}
+
+        </div>
+    <div id="paynow"  style="background-color: #923838;cursor: pointer;margin: 30px 0;" >PAY NOW</div>  
+    </div>
+
+<div class="checkout-col-2">
+    <div class="cart-table">
+        <div style="font-size: 1.4em;padding: 10px;border-bottom: 2px solid;">Order details</div>
+        <div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>items price</span><span id="total_sum">$ {{ total }}</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>packing</span><span>$ 0.0</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>shipping</span><span id ="shipping_charges">$ {{ shipping }}</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>discount</span><span>- $ 0.0</span></div>
+            <div style="padding:5px 10px;display:flex;justify-content: space-between;font-size: 1.3em;border-top: 4px solid var(--footerclr);"><span>Total</span><span id="total_2">{{ total2 }}</span></div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock body %}
+
+{% block script %}
+<script>
+    $( document ).ready(function() {
+    console.log( "ready!" );
+    var id=$('.address-block-2').attr('id');
+    console.log(id);
+});
+    
+    function selected(n){
+        $('.address-block-2').css('border-color',"var(--footerclr");
+        $(n).css('border-color','#923838');
+        id=$(n).attr('id');
+        console.log(id);
+    };
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    "key": "rzp_test_mYGcz7UrWYirHW", // Enter the Key ID generated from the Dashboard
+    // "amount": "{% widthratio final_price 1 100 %}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "amount": "{{total2}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "AUD",
+    "name": "27Shifterz",
+    "description": "Test Transaction",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "{{callback_url}}",
+    "prefill": {
+      "name": "{{request.user.name}}",
+      "email": "{{request.user.email}}",
+      "contact": "+91" + "{{request.user.phone}}"
+    },
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('paynow').onclick = function (e) {
+    $.get('/success/'+id,function(){    
+    });    
+    
+    rzp1.open();
+    e.preventDefault();
+    
+  };
+</script>
+{% endblock script %}

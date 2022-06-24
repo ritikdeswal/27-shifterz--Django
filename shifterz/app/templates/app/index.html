@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block body %} 
+<div class="fader " style="background: linear-gradient(
+    180deg, var(--bgclr), transparent);margin-top: 80px;
+        "></div>
+<div class="ss-container" data-autoplay="true">
+    
+    <div class="slide"> <img src="{%static 'app/banner/b2.jpg' %}" /></div>
+    <div class="slide">
+        <img src="{%static 'app/banner/b1.jpg' %}"/>
+    </div>
+    <div class="slide">
+        <img src="{%static 'app/banner/b3.jpg' %}"/>
+    </div>
+    <div class="slide">
+        <img src="{%static 'app/banner/b4.jpg' %}"/>
+    </div>
+
+    <button class="prev" onclick="prev()">&lt;</button>
+    <button class="next" onclick="next()">&gt;</button>
+
+</div>
+<div class="fader " style="background: linear-gradient(
+    0deg, var(--bgclr), transparent);
+        " ></div>
+<div class="dots_container" id="indicator"></div>
+
+<!-- -----------------banner ends------------------------------- -->
+
+<div style="width: 90%;margin: auto;position: relative;" >
+    <div class="fader2"></div>
+    <h2 class='cat-title' style="margin-top: 30px ;margin-bottom: 10px;">lights</h2>
+    <div class='category' style='display: flex;overflow: scroll;'>
+        {% for e in lights %} 
+        <span class="oln" ><a href="product/{{e.id}}">
+            <div class="img-container"><img src="media/{{e.product_image}}" alt="" style="width: 100%;height: 100%;"></div>
+            <div style="margin-top: 5px;"><i>$ {{e.discounted_price}}</i> </div>
+            <div style="margin-top: 10px;overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;" class="title">{{e.title}}</div> </a>
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div style="width: 90%;margin: auto;position: relative;margin-bottom: 10px;">
+    <div class="fader2"></div>
+    <h2 class='cat-title' style="margin-top: 30px ;margin-bottom: 10px;">Brakes</h2>
+    <div class='category' style='display: flex;overflow: scroll;'>
+        {% for e in brakes %} 
+        <span class="oln" ><a href="product/{{e.id}}">
+            <div class="img-container"><img src="media/{{e.product_image}}" alt="" style="width: 100%;height: 100%;"></div>
+            <div style="margin-top: 5px;"><i>$ {{e.discounted_price}}</i> </div>
+            <div style="margin-top: 10px;overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;"class="title">{{e.title}}</div></a>  
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div style="margin: 50px 0;position: relative;" id="halloween">
+    <div class="fader " style="background: linear-gradient(
+    180deg, var(--bgclr), transparent);margin-top: 80px;height: 30px;
+        "></div>
+    <img src="{%static 'app/banner/halloween.jpg' %}" style="width: 100%;margin: -30px 0;" class="animate"/>
+    <p >HALLOWEEN SALE <br> LIVE NOW .</p>
+    <div class="fader " style="background: linear-gradient(
+    0deg, var(--bgclr), transparent);height: 28px;
+        " ></div>
+</div>
+
+
+<div style="width: 90%;margin: auto;position: relative;margin-bottom: 10px;">
+    <div class="fader2"></div>
+    <h2 class='cat-title' style="margin-top: 30px ;margin-bottom: 10px;">spoilers</h2>
+    <div class='category' style='display: flex;overflow: scroll;'>
+        {% for e in spoilers %} 
+        <span class="oln" ><a href="product/{{e.id}}">
+            <div class="img-container"><img src="media/{{e.product_image}}" alt="" style="width: 100%;height: 100%;"></div>
+            <div style="margin-top: 5px;"><i>$ {{e.discounted_price}}</i> </div>
+            <div style="margin-top: 10px;overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;"class="title">{{e.title}}</div> </a> 
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+<div style="width: 90%;margin: auto;position: relative;margin-bottom: 10px;">
+    <div class="fader2"></div>
+    <h2 class='cat-title' style="margin-top: 30px ;margin-bottom: 10px;">seat</h2>
+    <div class='category' style='display: flex;overflow: scroll;'>
+        {% for e in seat %} 
+        <span class="oln" ><a href="product/{{e.id}}">
+            <div class="img-container"><img src="media/{{e.product_image}}" alt="" style="width: 100%;height: 100%;"></div>
+            <div style="margin-top: 5px;"><i>$ {{e.discounted_price}}</i> </div>
+            <div style="margin-top: 10px;overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;"class="title">{{e.title}}</div></a>  
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<div style="width: 90%;margin: auto;position: relative;margin-bottom: 10px;">
+    <div class="fader2"></div>
+    <h2 class='cat-title' style="margin-top: 30px ;margin-bottom: 10px;">underglow</h2>
+    <div class='category' style='display: flex;overflow: scroll;'>
+        {% for e in underglow %} 
+        <span class="oln" ><a href="product/{{e.id}}">
+            <div class="img-container"><img src="media/{{e.product_image}}" alt="" style="width: 100%;height: 100%;"></div>
+            <div style="margin-top: 5px;"><i>$ {{e.discounted_price}}</i> </div>
+            <div style="margin-top: 10px;overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;"class="title">{{e.title}}</div> </a> 
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+<script src="{%static 'app/js/carousel.js' %}"></script>
+
+{% endblock body %}

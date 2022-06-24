@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+
+{% block body %}
+
+<div style="width: 90%;margin: auto;height:70vh;" class='m-top'>  
+    <div class="cart-col-1">
+        {% if user.is_authenticated %}
+        {%for c in cart %}
+        <div style="display: flex;
+        margin: 10px;    font-size: 1.2em;" id="block_{{c.product.id}}">
+            <img src="{{c.product.product_image.url}}" alt="" style="width: 15%;float: left;">
+            <div style="margin:10px; line-height: 1.3;flex-grow: 1;">
+                <div>{{c.product.title}}</div> 
+                <div>{{c.product.discounted_price}}</div>
+                <div style="margin-top: 10px;"> <span class="cart-quantity" onclick="minus_cart({{c.product.id}})">-</span> <span id="quantity_value_{{c.product.id}}">{{c.quantity}}</span> <span class="cart-quantity" onclick="plus_cart({{c.product.id}})">+</span></div>
+            </div>
+            
+            <div onclick="remove_from_cart({{c.product.id}})" style="color:#ff5454;cursor:pointer;">Delete</div> 
+        </div>
+        {% endfor %}
+    
+        {% else %}
+        <div style="margin: 20px;
+        font-size: 1.2em;">sign in to see your cart items</div>
+        {% endif %}
+    </div>
+
+<div class="cart-col-2">
+    <div class="cart-table">
+        <div style="font-size: 1.4em;padding: 10px;border-bottom: 2px solid;">Order details</div>
+        <div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>items price</span><span id="total_sum">$ {{ total }}</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>packing</span><span>$ 0.0</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>shipping</span><span id ="shipping_charges">$ {{ shipping }}</span></div>
+            <div style="padding:5px 10px;display:flex;font-size:1.2em;;justify-content: space-between;"><span>discount</span><span>- $ 0.0</span></div>
+            <div style="padding:5px 10px;display:flex;justify-content: space-between;font-size: 1.3em;border-top: 4px solid var(--footerclr);"><span>Total</span><span id="total_2">{{ total2 }}</span></div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div id="checkout" style="background-color: #923838;cursor: pointer;" onclick="location.href='/checkout'">CHECKOUT</div>
+    {% else %}
+    <div id="checkout" style="background-color: var(--footerclr);">CHECKOUT</div>
+    {% endif %}
+
+</div>
+</div>
+{% endblock body %}
+
+{% block script %}
+<script src="{%static 'app/js/cart.js' %}">
+</script>
+
+{% endblock script %}

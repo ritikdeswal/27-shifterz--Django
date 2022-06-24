@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>27 Shifterz | {% block title %} {% endblock title %}</title>
+    <link rel="icon" href="{%static 'app/favicon/fav.png' %}" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="{%static 'app/css/styles.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body style="background: var(--bgclr);">
+    <div id="top-gradient">
+        <div class=" col-90" id="nav-item" style="height: 130px;margin-top: 0;">
+            <div id="row1"><div id="img-block ">
+                <a href="/">
+                <img src="{%static 'app/brand-img/white.png' %}" id='logo' alt="logo">
+                </a></div>
+                <div id="nav-ico">
+                    {% csrf_token %}
+                    <div id="search-container" ><input type="text" id="search-input"  placeholder="enter keywords to search" onkeyup="searching()"><span
+                        style="position: absolute;    padding-right: 15px;right: -37px;
+                        top: 12px;cursor: pointer;" onclick="document.getElementById('search-container').style.display='none';">
+                        X</span>
+                    
+                            <div id="search-output" >
+                                <ul id="listOfResults">
+                                          
+                                </ul>
+                            </div>
+                    </div>
+
+                        
+                    <span class="tooltip" onclick="togglesearch()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="currentColor"></path>
+                    </svg><span class="tooltiptext">search</span>
+                    </span>
+                    
+                    <span class="tooltip" onclick = " viewSignup()" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg><span class="tooltiptext">account</span>
+                    </span>
+                    
+                    <!--  user.is_authenticated  -->
+                    <span class="tooltip" onclick="location.href='/cart'"><svg  xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                        <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5 9H19L20 21H4L5 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        
+                        </svg>
+                    <span class="tooltiptext" >cart</span>
+                    
+                    </span>
+                    
+                    <span class="tooltip">
+                    <svg id="dark-toggle" name="dark" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3V4M12 20V21M21 12H20M4 12H3M18.364 18.364L17.6569 17.6569M6.34315 6.34315L5.63604 5.63604M18.364 5.63609L17.6569 6.3432M6.3432 17.6569L5.63609 18.364M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg><span class="tooltiptext">toggle<br>theme</span></span>
+
+                                                   
+                
+                </div>
+            </div>
+
+            <div id="row2"></div>
+       
+        </div>
+    </div>
+    <!--  nav-bar ends -->
+    <div id="sidebar" >
+        <div class="close-btn" style="font-size: 1.5em;margin: 30px;float: right;cursor: pointer;" onclick="hideSidebar()">X</div>
+        <div id="accountSignup" style="clear: both;padding: 20px;font-size: 1.2em;">
+                   
+                  {% if user.is_authenticated %}
+                  <h3>Welcome, {{ user.username | capfirst}} !</h3>
+                  <p style="margin: 10px 0;
+                  font-style: italic;"><a href="/accounts/logout/" style="color:#ff5454 ;">Sign Out</a></p>  
+                  <div style="margin: 50px 0;line-height: 2;float: left;
+                  width: 100%;" id='accountitem'>
+                        <div onclick="extend(), savedAddressView(this)" class="nav-buttons" style="cursor: pointer;" id ="saved_button"> saved address </div> 
+                        <div onclick="extend() ,wishlistView(this)" class="nav-buttons" style="cursor: pointer;" id="wishlist_button"> wishlist </div> 
+                        <div onclick="extend() ,ordersView(this)" class="nav-buttons" style="cursor: pointer;" id="orders_button"> orders </div> 
+                        
+                        <a  onclick="del_user()" style="color:#ff5454 ;font-style: italic;cursor: pointer;">Delete Account</a>  
+                  </div>
+                  <div id="main-content" >
+                      <div id="address-all" style="display: none;">
+                        <div id="address-all2"></div>
+                            <form action="" style="padding: 30px 0;">
+                                {% csrf_token %}
+                                <h3 style="margin-bottom: 20px;">Add New</h3>
+                                <input type="text" class="address_input" placeholder="NAME" name="name" id="name" required>
+                                <input type="text" class="address_input" placeholder="LOCALITY" name="locality" id="locality" required>
+                                <input type="text" class="address_input" placeholder="CITY" name="city" id="city" required>
+                                <input type="text" class="address_input" placeholder="STATE" name="state" id="state" required>
+                                <input type="number" class="address_input" placeholder="ZIPCODE" name="zipcode" id="zipcode" required>
+                                <button type="submit" id="address_submit" style="background-color: #923838;cursor: pointer;">ADD</button>
+                            </form>
+                        </div>
+                      <div id="wishlist-all" style="display: none;"></div>
+                      <div id="order" style="display: none;"></div>
+
+                    </div>
+                  {% else %}
+                    <div >
+                   Sign In <div class="google-signIn"><a href="{% provider_login_url 'google' %}" style="text-decoration: none;">Google</a></div>
+                   <div style="margin: 50px 0;;cursor: default;line-height: 2" id='accountitem'>
+                        <div  class="nav-buttons" > saved address </div> 
+                        <div  class="nav-buttons" > wishlist </div> 
+                        <div  class="nav-buttons" > orders </div> 
+                 </div>
+                </div>
+                 
+                  {% endif %}
+        </div>
+    </div>
+
+    {% block body %} {% endblock body %}
+
+
+
+    <div class="custom-shape">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+        </svg>
+      <div id='footer' >
+        <div id="col1">
+            <h2 style="letter-spacing: 5px;margin-bottom:20px">INFORMATION</h2>
+            <a href="/privacy">Privacy policy</a><br>
+            <a href="/terms">Terms of use</a><br>
+            <a href="/return-policy">Return policy</a><br>
+            <a href="/shipping-policy">Shipping policy</a>
+        </div>
+        <div id="col2">
+            <img src="https://img.icons8.com/small/32/4a90e2/facebook-new.png" onclick="location.href='https://github.com/ritikdeswal'"/>
+            <img src="https://img.icons8.com/small/32/fa314a/youtube-play.png" onclick="location.href='https://www.youtube.com/channel/UCMJLCgL0f4z8a-_P2eRmovQ'"/>
+            <img src="https://img.icons8.com/small/32/4a90e2/twitter.png" />
+            <img src="https://img.icons8.com/small/32/fa314a/instagram-new.png" onclick="location.href='https://www.instagram.com/scorpion_graphic/'"/>
+            <img src="https://img.icons8.com/small/32/4a90e2/linkedin.png" onclick="location.href='https://www.linkedin.com/in/ritikdeswal77/'"/>
+        </div>
+    </div>
+</div>
+
+    <script src="{%static 'app/js/sidebar.js' %}"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script >
+        $('#saved_button').click(function(){
+    $.get("/getaddress", function(data, status){
+        console.log(data);
+        document.getElementById('address-all2').innerHTML='';
+        for (let i=0;i<data.length;i++){
+        document.getElementById('address-all2').innerHTML+="<div class='address-block' id='address_"+data[i].id+"'><h3 style='margin-bottom: 4px;'>Address "+(i+1)+"</h3><div style='display:inline-block'><div>"+ data[i]['name']+"</div><div>"+data[i]['locality']+" , " +data[i]['city']+" , " +data[i]['state']+" , " +data[i]['zipcode']+"</div></div><div style='color:#ff5454;cursor:pointer;float:right;' id='delete-address' onclick='deleteaddress(this)' val='" +data[i].id+"'>Delete</div> </div>";
+        }
+    });
+});
+
+
+function deleteaddress(n){
+    let id=n.getAttribute('val');
+    
+    $.get("/deleteaddress/"+id, function(data, status){
+        $('#address_'+id).remove();
+    });
+};
+
+$( "form" ).on( "submit", function(e) {
+    var dataString = $(this).serialize();
+    console.log(dataString);
+    // alert(dataString); return false;
+    $.ajax({
+        type: "POST",
+        url: '/newaddress/',
+        data: dataString,
+        success: function (data) {
+            console.log("okok");
+            document.getElementById('address-all2').innerHTML='';
+        for (let i=0;i<data.length;i++){
+        document.getElementById('address-all2').innerHTML+="<div class='address-block' id='address_"+data[i].id+"'><h3 style='margin-bottom: 4px;'>Address "+(i+1)+"</h3><div style='display:inline-block'><div>"+ data[i]['name']+"</div><div>"+data[i]['locality']+" , " +data[i]['city']+" , " +data[i]['state']+" , " +data[i]['zipcode']+"</div></div><div style='color:#ff5454;cursor:pointer;float:right;' id='delete-address' onclick='deleteaddress(this)' val='" +data[i].id+"'>Delete</div> </div>";
+        }
+    
+        }
+    });
+
+    e.preventDefault();
+});
+
+        
+$('#wishlist_button').click(function(){
+    $.get("/getwishlist", function(data, status){
+        // console.log(data);
+        document.getElementById('wishlist-all').innerHTML='';
+        for (let i=0;i<data.length;i++){
+        document.getElementById('wishlist-all').innerHTML+='<div style="display: flex;margin: 10px;"><img src="'+data[i]['image']+'" alt="" style="width: 15%;float: left;aspect-ratio: 1.0;"><div style="margin:10px; line-height: 1.3;flex-grow: 1;"><div>'+data[i]['title']+'</div><div>'+data[i]['price']+'</div></div><div style="color:#ff5454;cursor:pointer;" onclick="removewishlist(this)" val="' +data[i].id+'">Remove</div></div></div>';
+        }
+    });
+});
+
+function removewishlist(n){
+    let id=n.getAttribute('val');
+    $.get("/removewishlist/"+id, function(data, status){
+        document.getElementById('wishlist-all').innerHTML='';
+        for (let i=0;i<data.length;i++){
+        document.getElementById('wishlist-all').innerHTML+='<div style="display: flex;margin: 10px;"><img src="'+data[i]['image']+'" alt="" style="width: 15%;float: left;aspect-ratio: 1.0;"><div style="margin:10px; line-height: 1.3;flex-grow: 1;"><div>'+data[i]['title']+'</div><div>'+data[i]['price']+'</div></div><div style="color:#ff5454;cursor:pointer;" onclick="removewishlist(this)" val="' +data[i].id+'">Remove</div></div></div>';
+
+        }
+    });
+};
+
+$('#orders_button').click(function(){
+    $.get("/getorders", function(data, status){
+        document.getElementById('order').innerHTML='';
+        for (let i=0;i<data.length;i++){
+        document.getElementById('order').innerHTML+='<div class="order-block"><h3 style="margin-bottom: 4px;">Order ID : '+data[i]['order_id']+'</h3><div style="display:inline-block"><div> Total amount : '+data[i]['amount']+'</div><div> Shipping to - '+ data[i]['locality']+' , ' +data[i]['city'] +'</div><div> Placed on '+ data[i]['date']+'</div><div style="margin: 7px 0;"> Status <span style="color: #6dca6d;font-style: italic;">'+ data[i]['status']+'</span></div></div></div>';
+        }
+    });
+});
+
+function del_user(){
+    $.get('/del-user',function(){
+        console.log("deleted");
+        location.reload();
+    });
+};
+    </script>
+    <script id="darkmode" >
+        let lightMode = localStorage.getItem('lightMode'); 
+
+const lightModeToggle = document.querySelector('#dark-toggle');
+
+const enableLightMode = () => {
+document.body.classList.add('lightmode');
+document.getElementById('logo').src="{%static 'app/brand-img/black.png' %}";
+localStorage.setItem('lightMode', 'enabled');
+}
+
+const disableLightMode = () => {
+document.body.classList.remove('lightmode');
+document.getElementById('logo').src="{%static 'app/brand-img/white.png' %}";
+localStorage.setItem('lightMode', null);
+}
+
+
+if (lightMode === 'enabled') {
+enableLightMode();
+}
+
+lightModeToggle.addEventListener('click', () => {
+lightMode = localStorage.getItem('lightMode'); 
+
+if (lightMode !== 'enabled') {
+    enableLightMode(); 
+} else {  
+    disableLightMode(); 
+}
+});
+
+    </script>
+    <script>
+        function togglesearch() {
+            inputarea=document.getElementById('search-container');
+            if (inputarea.style.display=='block'){
+                inputarea.style.display='none';
+            }
+            else {inputarea.style.display='block';
+            }
+            document.getElementById('search-output').style.display='none';
+        };
+
+        
+        function searching() {
+                lst=JSON.parse('{{list|safe}}');
+            document.getElementById('search-output').style.display='revert';
+            input = document.getElementById("search-input");
+            input2 = input.value.toUpperCase();
+            console.log(input2);
+
+            ull=document.getElementById("listOfResults");
+            ull.innerHTML="";
+            for (j=0;j<lst.length;j++){
+                if (lst[j][0].toUpperCase().indexOf(input2) >-1){
+                li=document.createElement("li");
+                li.innerHTML="<a href='product/"+lst[j][1]+"' style='text-decoration: none;color:var(--txtclr);'>"+lst[j][0]+"</a>";
+                ull.appendChild(li);
+                };
+            };
+            if (input.value==''){
+                document.getElementById('search-output').style.display='none';};
+        
+            };
+</script>
+   
+    {% block script %} {% endblock script %}
+    <!-- 
+                                                                                                   
+ XXXXXXXXXXX                                                                              XX
+X XX       XXX                                                                            XX
+  XX         XX                                                                           XX
+  XX          XX                                XX               X                        XX
+  XX          XX      XXXXXX        XXXXXXXXX   XX              XX         XXXXXX         XX
+  XX          XX    XXXX   XX      XX       XX   XX            XX         XX    XX        XX
+  XX          XX   XX      XX      XX            XX            XX        XX     XX        XX
+  XX          XX   XXXXXXXXXX       XXXXXXX       XX          XX         X      XX        XX
+  XX         XX    XX                    XXXX      XX    XX  XX          X      XXX       XX
+  XX       XXX     XXX                     XX       X  XX XX X           XX     X X        XX
+  XX     XXXX       XXXXXXXXX     XXX      XX       XXXX   XXX            XX   XX XX        XXXXXXX
+   XXXXXXX                         XXXXXXXXX         XX    XX              XXXXX   XX
+
+
+
+
+                                                                       XXXX               XXXXXXXXXXXXXXXXXXXXXXXXXX
+     XXXXXXXXXXXXXXXXXXXXXXXXXX                                       XXXXXX              XXXXXXXXXXXXXXXXXXXXXXXXXX
+     XXXXXXXXXXXXXXXXXXXXXXXXXX          XXX                          XX XXXX                        XXXX
+                XXXX                     XXXXX                       XX    XXX                        XXX
+                XXXX                    XXX  XX                      XX    XXXX                       XXX
+                XXXX                   XX     XX                    XX       XX                       XXX
+                XXXX                  XXX      XXX                 XX         XX                      XXX
+                XXXX                 XXX        XX                XXX         XXX                     XXX
+                XXXX                 XX          XX               XX           XXX                    XXX
+                XXXX                XXX          XXX             XXXXXXXXXXXXXXXXXX                   XXX
+                XXXX               XXXXXXXXXXXXXXXXXX           XXXXXXXXXXXXXXXXXXX                   XXX
+                XXXX              XXXXXXXXXXXXXXXXXXXX          XXX              XXX                  XXX
+                XXXX             XXXX               XXX        XXX                XXX                 XXX
+                XXXX             XXX                XXX        XXX                 XXX                XXX
+      XX        XXXX            XXX                  XXX      XXX                  XXXX               XXX
+       XXX      XXX            XXX                   XXX     XXX                    XXX               XXX
+         XXXXXXXXXX            XX                     XX     XX                     XXX               XXX
+           XXXXXXX                                                                                    XXX
+     -->
+</body>
+
+</html>
